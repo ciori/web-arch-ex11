@@ -9,4 +9,5 @@ public class WebArchEx11Application {
 	public static void main(String[] args) {
 		SpringApplication.run(WebArchEx11Application.class, args);
 	}
+
 }
