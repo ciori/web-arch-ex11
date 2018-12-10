@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage your University</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Setup Page</h1>
+
+<p>CREATE STUDENT:</p>
+
+<div th:if="${errorMessage!=null}"
+     style="color:red;font-style:italic" th:utext="${errorMessage}">..</div>
+
+<form th:action="@{/createStudent}" th:object="${createStudentForm}" method="POST">
+    <table>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" th:field="*{studentName}"/></td>
+        </tr>
+        <tr>
+            <td>Surname</td>
+            <td><input type="text" th:field="*{studentSurname}"/></td>
+        </tr>
+        <tr>
+            <td>Matriculation Number</td>
+            <td><input type="text" th:field="*{studentMatriculationNumber}" /></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" value="Create"/></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
