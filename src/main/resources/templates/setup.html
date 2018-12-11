@@ -5,14 +5,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+
 <h1>Setup Page</h1>
 
 <p>CREATE STUDENT:</p>
 
-<div th:if="${errorMessage!=null}"
-     style="color:red;font-style:italic" th:utext="${errorMessage}">..</div>
-
-<form th:action="@{/createStudent}" th:object="${createStudentForm}" method="POST">
+<form th:action="@{/createStudent}" th:object="${student}" method="POST">
     <table>
         <tr>
             <td>Name</td>
