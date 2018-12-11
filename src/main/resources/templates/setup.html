@@ -10,25 +10,14 @@
 
 <p>CREATE STUDENT:</p>
 
-<form th:action="@{/createStudent}" th:object="${student}" method="POST">
-    <table>
-        <tr>
-            <td>Name</td>
-            <td><input type="text" th:field="*{studentName}"/></td>
-        </tr>
-        <tr>
-            <td>Surname</td>
-            <td><input type="text" th:field="*{studentSurname}"/></td>
-        </tr>
-        <tr>
-            <td>Matriculation Number</td>
-            <td><input type="text" th:field="*{studentMatriculationNumber}" /></td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td><input type="submit" value="Create"/></td>
-        </tr>
-    </table>
+<form action="#" th:action="@{/createStudent}" th:object="${createStudentForm}" method="POST">
+    <p>Name</p>
+    <input type="text" th:field="*{studentName}"/>
+    <p>Surname</p>
+    <input type="text" th:field="*{studentSurname}"/>
+    <p>Matriculation Number</p>
+    <input type="int" th:field="*{studentMatriculationNumber}" />
+    <input type="submit" value="Create"/>
 </form>
 
 </body>
