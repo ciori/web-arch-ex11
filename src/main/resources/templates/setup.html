@@ -1,23 +1,17 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Manage your University</title>
+    <title>Getting Started: Handling Form Submission</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 
-<h1>Setup Page</h1>
-
-<p>CREATE STUDENT:</p>
-
-<form action="#" th:action="@{/createStudent}" th:object="${createStudentForm}" method="POST">
-    <p>Name</p>
-    <input type="text" th:field="*{studentName}"/>
-    <p>Surname</p>
-    <input type="text" th:field="*{studentSurname}"/>
-    <p>Matriculation Number</p>
-    <input type="int" th:field="*{studentMatriculationNumber}" />
-    <input type="submit" value="Create"/>
+<h1>Create Student</h1>
+<form action="#" th:action="@{/createStudent}" th:object="${student}" method="post">
+    <p>Name: <input type="text" th:field="*{name}" /></p>
+    <p>Surname: <input type="text" th:field="*{surname}" /></p>
+    <p>Matriculation Number: <input type="number" th:field="*{matriculationNumber}" /></p>
+    <p><input type="submit" value="Create" /> <input type="reset" value="Reset" /></p>
 </form>
 
 </body>

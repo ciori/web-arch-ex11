@@ -11,19 +11,4 @@ public class ApplicationController {
         return "home";
     }
 
-    @GetMapping("/setup")
-    public String setup() {
-        return "setup";
-    }
-
-    @GetMapping("/operations")
-    public String operations() {
-        return "operations";
-    }
-
-    @GetMapping("/show")
-    public String show() {
-        return "show";
-    }
-
 }
