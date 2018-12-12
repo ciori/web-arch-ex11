@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Handling Form Submission</title>
+    <title>Setup Page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
@@ -13,6 +13,15 @@
     <p>Matriculation Number: <input type="number" th:field="*{matriculationNumber}" /></p>
     <p><input type="submit" value="Create" /> <input type="reset" value="Reset" /></p>
 </form>
+
+<h1>Create Professor</h1>
+<form action="#" th:action="@{/createProfessor}" th:object="${professor}" method="post">
+    <p>Name: <input type="text" th:field="*{name}" /></p>
+    <p>Surname: <input type="text" th:field="*{surname}" /></p>
+    <p><input type="submit" value="Create" /> <input type="reset" value="Reset" /></p>
+</form>
+
+<a href="/">Home</a>
 
 </body>
 </html>

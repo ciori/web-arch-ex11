@@ -1,13 +1,15 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Show Page</title>
+    <title>Setup Result Page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<h1>Show Page</h1>
 
-<p>Show all data <a href="/showData">here</a></p>
+<h1>Setup Result Page</h1>
+<p th:text="${result}" />
+<a href="/setup">Create another Entity</a><br>
+<a href="/">Home</a>
 
 </body>
 </html>
