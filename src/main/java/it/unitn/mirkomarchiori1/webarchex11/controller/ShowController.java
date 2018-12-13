@@ -33,4 +33,11 @@ public class ShowController {
         return "showResult";
     }
 
+    @PostMapping("/showStudentsInExam")
+    public String showStudentsInExam(@RequestParam("name") String name, Model model) {
+        String resultAsHtml = showService.showStudentsInExam(name);
+        model.addAttribute("resultAsHtml", resultAsHtml);
+        return "showResult";
+    }
+
 }

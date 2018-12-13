@@ -75,7 +75,7 @@ public class ShowService {
 
     public String showStudentsInCourse(String name) {
         if (courseRepository.findByName(name).size() == 0) {
-            return "<div><p>No available Course named <b>" + name + "</b> found!<p></div>";
+            return "<div><p>ERROR: No available Course named <b>" + name + "</b> found!<p></div>";
         }
         String resString = "<div>";
         resString = resString + "<h3>LIST OF ENROLLED STUDENTS IN THE COURSE: <b>" + name + "</b></h3>";
@@ -86,6 +86,31 @@ public class ShowService {
             for (Student student: courseRepository.findByName(name).get(0).getStudents()) {
                 resString = resString + "<p style='text-indent: 2em;'>" + student.getName() +
                         " " + student.getSurname() + " " + student.getMatriculationNumber() + "</p>";
+            }
+        }
+        resString = resString + "</div>";
+        return resString;
+    }
+
+    public String showStudentsInExam(String name) {
+        if (courseRepository.findByName(name).size() == 0) {
+            return "<div><p>ERROR: No available Course named <b>" + name + "</b> found!<p></div>";
+        }
+        if (examRepository.findByName(name).size() == 0) {
+            return "<div><p>ERROR: No available Exam for the Course <b>" + name + "</b> found!<p></div>";
+        }
+        String resString = "<div>";
+        resString = resString + "<h3>LIST OF REGISTERED STUDENTS AND THEIR GRADES IN THE EXAM OF: <b>" + name + "</b></h3>";
+        if (examRepository.findByName(name).get(0).getStudents().size() == 0) {
+            resString = resString + "<p style='text-indent: 2em;'>No Students registered to this Exam!</p>";
+        }
+        else {
+            Exam exam = examRepository.findByName(name).get(0);
+            List<Student> students = exam.getStudents();
+            List<Integer> grades = exam.getGrades();
+            for (int i=0;i<students.size();i++) {
+                resString = resString + "<p style='text-indent: 2em;'>" + students.get(i).getName() +
+                        " " + students.get(i).getSurname() + " " + students.get(i).getMatriculationNumber() + " - " + grades.get(i) + "</p>";
             }
         }
         resString = resString + "</div>";
