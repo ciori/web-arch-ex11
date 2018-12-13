@@ -1,10 +1,42 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Manage your University</title>
+    <title>Operations Page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+
 <h1>Operations Page</h1>
+
+<h3>Enroll Student to Course</h3>
+<form action="/enrollStudentToCourse" method="post">
+    <p>Student Matriculation Number: <input type="number" name="studentMatriculationNumber" /></p>
+    <p>Course Name: <input type="text" name="courseName" /></p>
+    <p><input type="submit" value="Enroll" /> <input type="reset" value="Reset" /></p>
+</form>
+
+<h3>Register Student to Exam</h3>
+<form action="/registerStudentToExam" method="post">
+    <p>Student Matriculation Number: <input type="number" name="studentMatriculationNumber" /></p>
+    <p>Exam Name: <input type="text" name="examName" /></p>
+    <p><input type="submit" value="Register" /> <input type="reset" value="Reset" /></p>
+</form>
+
+<h3>Assign Professor to Course</h3>
+<form action="/assignProfessorToCourse" method="post">
+    <p>Professor Name: <input type="text" name="professorName" /></p>
+    <p>Professor Surname: <input type="text" name="professorSurname" /></p>
+    <p>Course Name: <input type="text" name="courseName" /></p>
+    <p><input type="submit" value="Assign" /> <input type="reset" value="Reset" /></p>
+</form>
+
+<h3>Grade Student</h3>
+<form action="/gradeStudent" method="post">
+    <p>Student Matriculation Number: <input type="number" name="studentMatriculationNumber" /></p>
+    <p>Exam Name: <input type="text" name="examName" /></p>
+    <p>Grade: <input type="number" name="grade" /></p>
+    <p><input type="submit" value="Grade" /> <input type="reset" value="Reset" /></p>
+</form>
+
 </body>
 </html>

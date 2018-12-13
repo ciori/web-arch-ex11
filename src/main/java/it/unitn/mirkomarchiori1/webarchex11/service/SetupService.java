@@ -26,22 +26,19 @@ public class SetupService {
     public String createStudent(Student student) {
         studentRepository.save(student);
         Student resStudent = studentRepository.findByMatriculationNumber(student.getMatriculationNumber()).get(0);
-        String resString = "User " + resStudent.getName() + " " + resStudent.getSurname() + " " + resStudent.getMatriculationNumber() + " created";
-        return resString;
+        return "User " + resStudent.getName() + " " + resStudent.getSurname() + " " + resStudent.getMatriculationNumber() + " created";
     }
 
     public String createProfessor(Professor professor) {
         professorRepository.save(professor);
         Professor resProfessor = professorRepository.findByNameAndSurname(professor.getName(), professor.getSurname()).get(0);
-        String resString = "Professor " + resProfessor.getName() + " " + resProfessor.getSurname() + " created";
-        return resString;
+        return "Professor " + resProfessor.getName() + " " + resProfessor.getSurname() + " created";
     }
 
     public String createCourse(Course course) {
         courseRepository.save(course);
         Course resCourse = courseRepository.findByName(course.getName()).get(0);
-        String resString = "Course " + resCourse.getName() + " created";
-        return resString;
+        return "Course " + resCourse.getName() + " created";
     }
 
     public String createExam(Exam exam) {
