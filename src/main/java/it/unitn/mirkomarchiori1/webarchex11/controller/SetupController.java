@@ -1,5 +1,7 @@
 package it.unitn.mirkomarchiori1.webarchex11.controller;
 
+import it.unitn.mirkomarchiori1.webarchex11.model.Course;
+import it.unitn.mirkomarchiori1.webarchex11.model.Exam;
 import it.unitn.mirkomarchiori1.webarchex11.model.Professor;
 import it.unitn.mirkomarchiori1.webarchex11.model.Student;
 import it.unitn.mirkomarchiori1.webarchex11.service.SetupService;
@@ -20,6 +22,8 @@ public class SetupController {
     public String setupForm(Model model) {
         model.addAttribute("student", new Student());
         model.addAttribute("professor", new Professor());
+        model.addAttribute("course", new Course());
+        model.addAttribute("exam", new Exam());
         return "setup";
     }
 
@@ -33,6 +37,20 @@ public class SetupController {
     @PostMapping("/createProfessor")
     public String createProfessorSubmit(@ModelAttribute Professor professor, Model model) {
         String result = setupService.createProfessor(professor);
+        model.addAttribute("result", result);
+        return "setupResult";
+    }
+
+    @PostMapping("/createCourse")
+    public String createCourseSubmit(@ModelAttribute Course course, Model model) {
+        String result = setupService.createCourse(course);
+        model.addAttribute("result", result);
+        return "setupResult";
+    }
+
+    @PostMapping("/createExam")
+    public String createExamSubmit(@ModelAttribute Exam exam, Model model) {
+        String result = setupService.createExam(exam);
         model.addAttribute("result", result);
         return "setupResult";
     }

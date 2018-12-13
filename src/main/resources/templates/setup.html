@@ -6,7 +6,9 @@
 </head>
 <body>
 
-<h1>Create Student</h1>
+<h1>Setup Page</h1>
+
+<h3>Create Student</h3>
 <form action="#" th:action="@{/createStudent}" th:object="${student}" method="post">
     <p>Name: <input type="text" th:field="*{name}" /></p>
     <p>Surname: <input type="text" th:field="*{surname}" /></p>
@@ -14,10 +16,23 @@
     <p><input type="submit" value="Create" /> <input type="reset" value="Reset" /></p>
 </form>
 
-<h1>Create Professor</h1>
+<h3>Create Professor</h3>
 <form action="#" th:action="@{/createProfessor}" th:object="${professor}" method="post">
     <p>Name: <input type="text" th:field="*{name}" /></p>
     <p>Surname: <input type="text" th:field="*{surname}" /></p>
+    <p><input type="submit" value="Create" /> <input type="reset" value="Reset" /></p>
+</form>
+
+<h3>Create Course</h3>
+<form action="#" th:action="@{/createCourse}" th:object="${course}" method="post">
+    <p>Name: <input type="text" th:field="*{name}" /></p>
+    <p><input type="submit" value="Create" /> <input type="reset" value="Reset" /></p>
+</form>
+
+<h3>Create Exam</h3>
+<form action="#" th:action="@{/createExam}" th:object="${exam}" method="post">
+    <p>Course Name: <input type="text" th:field="*{name}" /></p>
+    <p>Date: <input type="date" th:field="*{date}" /></p>
     <p><input type="submit" value="Create" /> <input type="reset" value="Reset" /></p>
 </form>
 

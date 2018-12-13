@@ -1,6 +1,7 @@
 package it.unitn.mirkomarchiori1.webarchex11.model;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -23,6 +24,8 @@ public class Exam implements Serializable {
 
     @OneToOne(cascade = {CascadeType.PERSIST}, mappedBy = "exam")
     private Course course;
+
+    private String name;
 
     private Date date;
 
