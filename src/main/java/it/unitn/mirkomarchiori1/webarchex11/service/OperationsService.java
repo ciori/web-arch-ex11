@@ -8,6 +8,7 @@ import it.unitn.mirkomarchiori1.webarchex11.repository.ProfessorRepository;
 import it.unitn.mirkomarchiori1.webarchex11.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 
@@ -23,6 +24,7 @@ public class OperationsService {
     @Autowired
     private ExamRepository examRepository;
 
+    @Transactional
     public String enrollStudentToCourse(Integer studentMatriculationNumber, String courseName) {
         if (studentRepository.findByMatriculationNumber(studentMatriculationNumber).size() == 0) {
             return "ERROR: User " + studentMatriculationNumber + " does not exist!";
@@ -32,10 +34,18 @@ public class OperationsService {
         }
         Student student = studentRepository.findByMatriculationNumber(studentMatriculationNumber).get(0);
         Course course = courseRepository.findByName(courseName).get(0);
-        Set<Course> courses = student.getCourses();
-        courses.add(course);
-        student.setCourses(courses);
+
+        Set<Course> studentCourses = student.getCourses();
+        Set<Student> courseStudents = course.getStudents();
+
+        studentCourses.add(course);
+        student.setCourses(studentCourses);
         studentRepository.save(student);
+
+        /*courseStudents.add(student);
+        course.setStudents(courseStudents);
+        courseRepository.save(course);*/
+
         return "User " + student.getName() + " " + student.getSurname() + " " + student.getMatriculationNumber() + " enrolled in Course " + course.getName();
     }
 

@@ -74,7 +74,13 @@ public class ShowService {
     }
 
     public String showStudentsInCourse(String name) {
-        if (courseRepository.findByName(name).size() == 0) {
+        // TEST
+        //System.out.println(courseRepository.findByName(name).size());
+        System.out.println(studentRepository.findByMatriculationNumber(1).size());
+        String resString = "ok";
+
+        // backup
+        /*if (courseRepository.findByName(name).size() == 0) {
             return "<div><p>ERROR: No available Course named <b>" + name + "</b> found!<p></div>";
         }
         String resString = "<div>";
@@ -88,7 +94,7 @@ public class ShowService {
                         " " + student.getSurname() + " " + student.getMatriculationNumber() + "</p>";
             }
         }
-        resString = resString + "</div>";
+        resString = resString + "</div>";*/
         return resString;
     }
 
