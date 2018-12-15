@@ -46,34 +46,33 @@ public class ShowService {
         for (Course course: courseRepository.findAll()) {
             resString = resString + "<p>" + course.getName() + "</p>";
             if (course.getProfessor() != null) {
-                resString = resString + "<p style='text-indent: 2em;'>teacher:" + course.getProfessor().getName() + "</p>";
+                resString = resString + "<p style='text-indent: 2em;'>teacher: " + course.getProfessor().getName() + "</p>";
             }
             else {
                 resString = resString + "<p style='text-indent: 2em;'>teacher:</p>";
             }
             resString = resString + "<p style='text-indent: 2em;'>students:</p>";
             for (Student student: course.getStudents()) {
-                resString = resString + "<p style='text-indent: 4em;'>" + student.getName() +
+                resString = resString + "<p style='text-indent: 4em;'> " + student.getName() +
                         " " + student.getSurname() + " " + student.getMatriculationNumber() + "</p>";
             }
         }
 
         resString = resString + "<h5>EXAMS:</h5>";
         for (Exam exam: examRepository.findAll()) {
-            resString = resString + "<p><b>" + exam.getName() + "</b> on " + exam.getDate().toString() + " with enrolled students - grades:</p>";
+            resString = resString + "<p>" + exam.getName() + " on " + exam.getDate().toString() + " with enrolled students - grades:</p>";
             List<Student> students = exam.getStudents();
             List<Integer> grades = exam.getGrades();
-            if (students.size() == 0) {
-                resString = resString + "<p style='text-indent: 2em;'>No Students registered to this Exam!</p>";
-            }
-            for (int i=0;i<students.size();i++) {
-                if (grades.get(i) == -1) {
-                    resString = resString + "<p style='text-indent: 2em;'>" + students.get(i).getName() +
-                            " " + students.get(i).getSurname() + " " + students.get(i).getMatriculationNumber() + " - Not yet graded</p>";
-                }
-                else {
-                    resString = resString + "<p style='text-indent: 2em;'>" + students.get(i).getName() +
-                            " " + students.get(i).getSurname() + " " + students.get(i).getMatriculationNumber() + " - " + grades.get(i) + "</p>";
+            if (students.size() != 0) {
+                for (int i=0;i<students.size();i++) {
+                    if (grades.get(i) == -1) {
+                        resString = resString + "<p style='text-indent: 2em;'> " + students.get(i).getName() +
+                                " " + students.get(i).getSurname() + " " + students.get(i).getMatriculationNumber() + " - Not yet graded</p>";
+                    }
+                    else {
+                        resString = resString + "<p style='text-indent: 2em;'> " + students.get(i).getName() +
+                                " " + students.get(i).getSurname() + " " + students.get(i).getMatriculationNumber() + " - " + grades.get(i) + "</p>";
+                    }
                 }
             }
         }

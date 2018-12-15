@@ -37,7 +37,7 @@ public class OperationsController {
         return "operationsResult";
     }
 
-    /*@PostMapping("/assignProfessorToCourse")
+    @PostMapping("/assignProfessorToCourse")
     public String assignProfessorToCourse(@RequestParam("professorName") String professorName,
                                           @RequestParam("professorSurname") String professorSurname,
                                           @RequestParam("courseName") String courseName,
@@ -48,13 +48,15 @@ public class OperationsController {
     }
 
     @PostMapping("/gradeStudent")
-    public String gradeStudent(@RequestParam("studentMatriculationNumber") Integer studentMatriculationNumber,
+    public String gradeStudent(@RequestParam("professorName") String professorName,
+                               @RequestParam("professorSurname") String professorSurname,
+                               @RequestParam("studentMatriculationNumber") Integer studentMatriculationNumber,
                                @RequestParam("examName") String examName,
                                @RequestParam("grade") Integer grade,
                                Model model) {
-        String result = operationsService.gradeStudent(studentMatriculationNumber, examName, grade);
+        String result = operationsService.gradeStudent(professorName, professorSurname, studentMatriculationNumber, examName, grade);
         model.addAttribute("result", result);
         return "operationsResult";
-    }*/
+    }
 
 }

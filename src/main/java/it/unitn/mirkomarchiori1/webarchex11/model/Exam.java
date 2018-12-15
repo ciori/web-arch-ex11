@@ -1,7 +1,7 @@
 package it.unitn.mirkomarchiori1.webarchex11.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
