@@ -1,8 +1,5 @@
 package it.unitn.mirkomarchiori1.webarchex11.model;
 
-import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -16,28 +13,64 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 @Entity(name = "Exam")
-@Data
 public class Exam implements Serializable {
 
-    @Id
     private int id;
-
-    @OneToOne(cascade = {CascadeType.PERSIST}, mappedBy = "exam")
     private Course course;
-
     private String name;
-
     private Date date;
-
-    @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinTable(name = "EXAM_STUDENT")
     private List<Student> students;
-
-    @ElementCollection(targetClass = Integer.class)
     private List<Integer> grades;
 
     public Exam() {
         this.id = (int) System.nanoTime();
+    }
+
+    @Id
+    public int getId() {
+        return this.id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @OneToOne(cascade = {CascadeType.PERSIST}, mappedBy = "exam")
+    public Course getCourse() {
+        return this.course;
+    }
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @JoinTable(name = "EXAM_STUDENT")
+    public List<Student> getStudents() {
+        return students;
+    }
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    @ElementCollection(targetClass = Integer.class)
+    public List<Integer> getGrades() {
+        return grades;
+    }
+    public void setGrades(List<Integer> grades) {
+        this.grades = grades;
     }
 
 }

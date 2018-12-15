@@ -1,7 +1,5 @@
 package it.unitn.mirkomarchiori1.webarchex11.model;
 
-import lombok.Data;
-
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -12,25 +10,55 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 @Entity(name = "Course")
-@Data
 public class Course implements Serializable {
 
-    @Id
     private int id;
-
     private String name;
-
-    @OneToOne(mappedBy = "course")
     private Professor professor;
-
-    @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER, mappedBy = "courses")
     private Set<Student> students;
-
-    @OneToOne(cascade = CascadeType.ALL)
     private Exam exam;
 
     public Course() {
         this.id = (int) System.nanoTime();
+    }
+
+    @Id
+    public int getId() {
+        return this.id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @OneToOne(mappedBy = "course")
+    public Professor getProfessor() {
+        return this.professor;
+    }
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
+    }
+
+    @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER, mappedBy = "courses")
+    public Set<Student> getStudents() {
+        return students;
+    }
+    public void setStudents(Set<Student> students) {
+        this.students = students;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    public Exam getExam() {
+        return exam;
+    }
+    public void setExam(Exam exam) {
+        this.exam = exam;
     }
 
 }

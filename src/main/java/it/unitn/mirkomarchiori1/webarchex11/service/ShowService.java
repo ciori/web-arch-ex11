@@ -10,6 +10,8 @@ import it.unitn.mirkomarchiori1.webarchex11.repository.ProfessorRepository;
 import it.unitn.mirkomarchiori1.webarchex11.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,6 +27,7 @@ public class ShowService {
     @Autowired
     private ExamRepository examRepository;
 
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public String showData() {
         String resString = "<div>";
         resString = resString + "<h3>ALL STORED DATA</h3>";
@@ -64,8 +67,14 @@ public class ShowService {
                 resString = resString + "<p style='text-indent: 2em;'>No Students registered to this Exam!</p>";
             }
             for (int i=0;i<students.size();i++) {
-                resString = resString + "<p style='text-indent: 2em;'>" + students.get(i).getName() +
-                        " " + students.get(i).getSurname() + " " + students.get(i).getMatriculationNumber() + " - " + grades.get(i) + "</p>";
+                if (grades.get(i) == -1) {
+                    resString = resString + "<p style='text-indent: 2em;'>" + students.get(i).getName() +
+                            " " + students.get(i).getSurname() + " " + students.get(i).getMatriculationNumber() + " - Not yet graded</p>";
+                }
+                else {
+                    resString = resString + "<p style='text-indent: 2em;'>" + students.get(i).getName() +
+                            " " + students.get(i).getSurname() + " " + students.get(i).getMatriculationNumber() + " - " + grades.get(i) + "</p>";
+                }
             }
         }
 
@@ -73,14 +82,9 @@ public class ShowService {
         return resString;
     }
 
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public String showStudentsInCourse(String name) {
-        // TEST
-        //System.out.println(courseRepository.findByName(name).size());
-        System.out.println(studentRepository.findByMatriculationNumber(1).size());
-        String resString = "ok";
-
-        // backup
-        /*if (courseRepository.findByName(name).size() == 0) {
+        if (courseRepository.findByName(name).size() == 0) {
             return "<div><p>ERROR: No available Course named <b>" + name + "</b> found!<p></div>";
         }
         String resString = "<div>";
@@ -94,10 +98,11 @@ public class ShowService {
                         " " + student.getSurname() + " " + student.getMatriculationNumber() + "</p>";
             }
         }
-        resString = resString + "</div>";*/
+        resString = resString + "</div>";
         return resString;
     }
 
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public String showStudentsInExam(String name) {
         if (courseRepository.findByName(name).size() == 0) {
             return "<div><p>ERROR: No available Course named <b>" + name + "</b> found!<p></div>";
@@ -115,8 +120,14 @@ public class ShowService {
             List<Student> students = exam.getStudents();
             List<Integer> grades = exam.getGrades();
             for (int i=0;i<students.size();i++) {
-                resString = resString + "<p style='text-indent: 2em;'>" + students.get(i).getName() +
-                        " " + students.get(i).getSurname() + " " + students.get(i).getMatriculationNumber() + " - " + grades.get(i) + "</p>";
+                if (grades.get(i) == -1) {
+                    resString = resString + "<p style='text-indent: 2em;'>" + students.get(i).getName() +
+                            " " + students.get(i).getSurname() + " " + students.get(i).getMatriculationNumber() + " - Not yet graded</p>";
+                }
+                else {
+                    resString = resString + "<p style='text-indent: 2em;'>" + students.get(i).getName() +
+                            " " + students.get(i).getSurname() + " " + students.get(i).getMatriculationNumber() + " - " + grades.get(i) + "</p>";
+                }
             }
         }
         resString = resString + "</div>";

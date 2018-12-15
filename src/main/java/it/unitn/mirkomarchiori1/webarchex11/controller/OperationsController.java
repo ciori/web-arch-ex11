@@ -28,7 +28,7 @@ public class OperationsController {
         return "operationsResult";
     }
 
-    /*@PostMapping("/registerStudentToExam")
+    @PostMapping("/registerStudentToExam")
     public String registerStudentToExam(@RequestParam("studentMatriculationNumber") Integer studentMatriculationNumber,
                                         @RequestParam("examName") String examName,
                                         Model model) {
@@ -37,7 +37,7 @@ public class OperationsController {
         return "operationsResult";
     }
 
-    @PostMapping("/assignProfessorToCourse")
+    /*@PostMapping("/assignProfessorToCourse")
     public String assignProfessorToCourse(@RequestParam("professorName") String professorName,
                                           @RequestParam("professorSurname") String professorSurname,
                                           @RequestParam("courseName") String courseName,
