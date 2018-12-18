@@ -50,8 +50,20 @@ public class OperationsService {
         if (studentRepository.findByMatriculationNumber(studentMatriculationNumber).size() == 0) {
             return "ERROR: User " + studentMatriculationNumber + " does not exist!";
         }
+        if (courseRepository.findByName(examName).size() == 0) {
+            return "ERROR: Course " + examName + " does not exist!";
+        }
         if (examRepository.findByName(examName).size() == 0) {
             return "ERROR: Exam for the Course " + examName + " does not exist!";
+        }
+        boolean studentEnrolled = false;
+        for (Student s: courseRepository.findByName(examName).get(0).getStudents()) {
+            if (s.getMatriculationNumber() == studentMatriculationNumber) {
+                studentEnrolled = true;
+            }
+        }
+        if (!studentEnrolled) {
+            return "ERROR: User " + studentMatriculationNumber + " is not enrolled to the Course " + examName + "!";
         }
         Student student = studentRepository.findByMatriculationNumber(studentMatriculationNumber).get(0);
         Exam exam = examRepository.findByName(examName).get(0);
